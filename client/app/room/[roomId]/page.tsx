@@ -38,7 +38,11 @@ export default function RoomPage() {
         <div className="p-8 rounded-lg flex flex-col items-center">
           <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
           <p className="text-lg font-semibold mb-4 text-center">
-            {!isConnected || wsError ? "Too idle, connection closed." : error}
+            {error
+              ? error
+              : !isConnected || wsError
+              ? "Too idle, connection closed."
+              : "Something wenmt wrong"}
           </p>
           <Button className="cursor-pointer" onClick={() => router.push("/")}>
             Go to Home
