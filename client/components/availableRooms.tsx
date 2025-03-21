@@ -29,6 +29,8 @@ export default function AvailableRooms() {
   const setUser = useSetAtom(userStateAtom);
   const [loading, setLoading] = useState(false);
 
+  console.log(W_BASE_URL);
+
   useEffect(() => {
     const ws = new WebSocket(`${W_BASE_URL}/check`);
 
