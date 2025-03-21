@@ -9,6 +9,7 @@ export const generateUniqueRoomName = (type: "Room" | "User") =>
   `${type}-${Math.random().toString(36).substring(2, 8)}`;
 
 export const BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://typing-master.allenbenny.site";
 export const W_BASE_URL =
-  process.env.NEXT_PUBLIC_WS_BASE_URL || "ws://localhost:5000";
+  process.env.NEXT_PUBLIC_WS_BASE_URL || "wss://typing-master.allenbenny.site";
