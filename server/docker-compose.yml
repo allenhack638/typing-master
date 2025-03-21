@@ -1,0 +1,31 @@
+services:
+  typing-master-server:
+    image: typing-master-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - typing-master-db
+    environment:
+      MONGO_URI: "mongodb://typing-master-mongo:27017/typing-master"
+      JWT_SECRET: "blahblahblah"
+      JWT_SECRET_EXPIRY: 172800000
+      COOLING_PERIOD_WS: 5000
+      COOLING_PERIOD_HTTP: 10000
+      BEGINNER_GAME_TIMER: 30000
+      EASY_GAME_TIMER: 20000
+      EXPERT_GAME_TIMER: 15000
+      LEGEND_GAME_TIMER: 10000
+
+  typing-master-db:
+    image: mongo:6.0
+    container_name: typing-master-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - typing-mongo-data:/data/db
+
+volumes:
+  typing-mongo-data:

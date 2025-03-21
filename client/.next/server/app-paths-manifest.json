@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/create-room/page": "app/create-room/page.js",
+  "/room/[roomId]/page": "app/room/[roomId]/page.js",
+  "/typing/page": "app/typing/page.js"
+}

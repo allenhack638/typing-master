@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const RoomControllers_1 = require("../controllers/RoomControllers");
+const authToken_1 = require("../middlewares/authToken");
+const zodMiddleware_1 = require("../middlewares/zodMiddleware");
+const roomValidator_1 = require("../validators/roomValidator");
+const RoomRouter = (0, express_1.Router)();
+RoomRouter.get("/available", RoomControllers_1.AvailableRooms);
+RoomRouter.get("/:roomName", (0, zodMiddleware_1.validateRequestData)(roomValidator_1.tokenQuerySchema, "query"), (0, zodMiddleware_1.validateRequestData)(roomValidator_1.roomNameParamsSchema, "params"), authToken_1.authenticateToken, RoomControllers_1.GetRoom);
+RoomRouter.put("/:roomName", (0, zodMiddleware_1.validateRequestData)(roomValidator_1.updateRoomSchema), (0, zodMiddleware_1.validateRequestData)(roomValidator_1.roomNameParamsSchema, "params"), authToken_1.authenticateToken, RoomControllers_1.UpdateRoom);
+RoomRouter.get("/join/:roomName", (0, zodMiddleware_1.validateRequestData)(roomValidator_1.userIdQuerySchema, "query"), (0, zodMiddleware_1.validateRequestData)(roomValidator_1.roomNameParamsSchema, "params"), RoomControllers_1.JoinRoom);
+RoomRouter.post("/", (0, zodMiddleware_1.validateRequestData)(roomValidator_1.createRoomSchema), RoomControllers_1.CreateRoom);
+exports.default = RoomRouter;

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const TemplateController_1 = require("../controllers/TemplateController");
+const zodMiddleware_1 = require("../middlewares/zodMiddleware");
+const roomValidator_1 = require("../validators/roomValidator");
+const TemplateRouter = (0, express_1.Router)();
+TemplateRouter.get("/:level", (0, zodMiddleware_1.validateRequestData)(roomValidator_1.levelParamsSchema, "params"), TemplateController_1.getRandomTemplate);
+TemplateRouter.post("/", TemplateController_1.insertTemplate);
+exports.default = TemplateRouter;
