@@ -9,25 +9,43 @@ import RoomNavbar from "@/components/roomNavbar";
 import RoomFooter from "@/components/roomFooter";
 import RoomUsersList from "@/components/roomUsersList";
 import TypingArea from "@/components/typingArea";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { AlertCircle } from "lucide-react";
 
 export default function RoomPage() {
+  const router = useRouter();
   const { loading, error } = useFetchRoomDetails();
   const user = useAtomValue(userStateAtom);
   const room = useAtomValue(roomState);
-  const { isConnected, loading: socketLoading, sendMessage } = useWebSocket();
+  const {
+    isConnected,
+    loading: socketLoading,
+    sendMessage,
+    wsError,
+  } = useWebSocket();
 
   if (socketLoading || loading)
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen font-semibold">
         Loading...
       </div>
     );
 
-  if (error)
+  if (wsError || error || !isConnected)
     return (
-      <div className="flex justify-center items-center h-screen">{error}</div>
+      <div className="flex flex-col justify-center items-center h-screen text-black">
+        <div className="p-8 rounded-lg flex flex-col items-center">
+          <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+          <p className="text-lg font-semibold mb-4 text-center">
+            {!isConnected || wsError ? "Too idle, connection closed." : error}
+          </p>
+          <Button className="cursor-pointer" onClick={() => router.push("/")}>
+            Go to Home
+          </Button>
+        </div>
+      </div>
     );
-  console.log("room", room);
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 p-6">

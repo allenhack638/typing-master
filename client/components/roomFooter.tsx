@@ -49,7 +49,7 @@ export default function RoomFooter({
     <div className="flex justify-between w-full mt-4 gap-3">
       {user.isAdmin && !room.gameState && (
         <Button
-          className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all text-ellipsis overflow-hidden whitespace-nowrap"
+          className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all text-ellipsis overflow-hidden whitespace-nowrap cursor-pointer"
           onClick={startGame}
           title={
             room.users.length <= 1
@@ -69,7 +69,7 @@ export default function RoomFooter({
       )}
 
       <Button
-        className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all"
+        className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all cursor-pointer"
         onClick={leaveRoom}
         disabled={!isConnected}
       >

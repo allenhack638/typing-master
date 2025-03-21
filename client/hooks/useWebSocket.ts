@@ -170,7 +170,7 @@ export function useWebSocket() {
   return {
     isConnected,
     loading,
-    error,
+    wsError: error,
     sendMessage: (msg: RoomMessage) =>
       socketRef.current?.send(JSON.stringify(msg)),
   };

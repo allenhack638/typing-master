@@ -134,7 +134,7 @@ export default function CreateRoom() {
             className="w-1/3"
           />
         </div>
-        <div className="flex items-center justify-between">
+        {/* <div className="flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-sm font-semibold">Enable Chat</span>
             <span className="text-xs text-gray-500 italic">
@@ -148,10 +148,15 @@ export default function CreateRoom() {
               setRoom((prev) => ({ ...prev, enableChat: value }))
             }
           />
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-between">
-          <span className="text-sm font-semibold">Private Room</span>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">Private Room</span>
+            <span className="text-xs text-gray-500 italic">
+              (Restricts access to invited users only.)
+            </span>
+          </div>
 
           <Switch
             checked={room.privateRoom}
@@ -163,7 +168,7 @@ export default function CreateRoom() {
 
         <Button
           onClick={handleSubmit}
-          className="w-full"
+          className="w-full cursor-pointer"
           disabled={!isMaxUsersValid || loading}
         >
           {loading ? "Creating..." : "Create Room"}

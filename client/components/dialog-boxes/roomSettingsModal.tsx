@@ -144,7 +144,7 @@ export default function RoomSettingsModal({
               disabled={loading}
             />
           </div>
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-sm font-semibold">Enable Chat</span>
             </div>
@@ -154,7 +154,7 @@ export default function RoomSettingsModal({
               onCheckedChange={(value) => handleChange("enableChat", value)}
               disabled={loading}
             />
-          </div>
+          </div> */}
 
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
@@ -172,12 +172,16 @@ export default function RoomSettingsModal({
 
         <DialogFooter>
           <div className="flex gap-4 w-full">
-            <Button onClick={onClose} className="flex-1" disabled={loading}>
+            <Button
+              onClick={onClose}
+              className="flex-1 cursor-pointer"
+              disabled={loading}
+            >
               Close
             </Button>
             <Button
               onClick={handleSubmit}
-              className="flex-1"
+              className="flex-1 cursor-pointer"
               disabled={
                 JSON.stringify(room) === JSON.stringify(localRoom) || loading
               }

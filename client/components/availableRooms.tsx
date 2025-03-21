@@ -27,9 +27,6 @@ export default function AvailableRooms() {
 
   const setRoom = useSetAtom(roomState);
   const setUser = useSetAtom(userStateAtom);
-  const [loading, setLoading] = useState(false);
-
-  console.log(W_BASE_URL);
 
   useEffect(() => {
     const ws = new WebSocket(`${W_BASE_URL}/check`);
@@ -67,8 +64,6 @@ export default function AvailableRooms() {
 
   const fetchRoom = async (roomId: string) => {
     try {
-      setLoading(true);
-
       const response = await axios.get(
         `${BASE_URL}/api/v1/room/join/${roomId}`,
         {
@@ -88,8 +83,6 @@ export default function AvailableRooms() {
       }
     } catch (err) {
       toast("Failed to join room");
-    } finally {
-      setLoading(false);
     }
   };
 
