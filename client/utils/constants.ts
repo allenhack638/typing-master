@@ -12,4 +12,5 @@ export const BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   "https://typing-master.allenbenny.site";
 export const W_BASE_URL =
-  process.env.NEXT_PUBLIC_WS_BASE_URL || "wss://typing-master.allenbenny.site";
+  process.env.NEXT_PUBLIC_WS_BASE_URL ||
+  "wss://typing-master.allenbenny.site/ws";

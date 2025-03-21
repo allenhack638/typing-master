@@ -35,9 +35,9 @@ class WSManager {
     this.wss.on("connection", (ws: AuthWebSocket, req: IncomingMessage) => {
       console.log("🔌 New AuthWebSocket Connection Attempt", req.url);
 
-      if (req.url?.startsWith("/auth")) {
+      if (req.url?.startsWith("/ws/auth")) {
         this.handlePrivateConnection(ws, req);
-      } else if (req.url === "/check") {
+      } else if (req.url === "/ws/check") {
         this.handlePublicConnection(ws);
       } else {
         console.log("❌ Invalid AuthWebSocket Type, Closing Connection");
